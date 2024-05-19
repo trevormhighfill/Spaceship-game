@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbpado6vgb8ep"]
 
 [ext_resource type="PackedScene" uid="uid://ceh1es7i0ljmn" path="res://ship.tscn" id="1_7bty8"]
-[ext_resource type="PackedScene" path="res://bullet.tscn" id="3_lpypr"]
+[ext_resource type="PackedScene" uid="uid://bdd7ggtlusmuj" path="res://bullet.tscn" id="3_lpypr"]
 [ext_resource type="PackedScene" uid="uid://bed4r2auk2t8" path="res://parallax_background.tscn" id="3_ogkwt"]
 
 [node name="Node2D" type="Node2D"]

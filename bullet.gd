@@ -14,7 +14,7 @@ func start_up(set_damage,team):
 	if !player_team:
 		$Sprite2D.modulate = Color(1,0,0,1)
 	else:
-		$Sprite2D.modulate = Color(0,.5,1,1)
+		$Sprite2D.modulate = Color(.8,0,1,1)
 
 func _physics_process(delta):
 	position += global_transform.basis_xform(Vector2.UP)*SPEED

@@ -3,6 +3,7 @@ extends CharacterBody2D
 var FIRERATE = 0.3
 var DAMAGE = 10
 var bullet = preload("res://bullet.tscn")
+var trail = preload("res://ship_visuals.tscn")
 var health = 100
 var max_health = 100
 var MAX_SPEED = 1000
@@ -25,18 +26,26 @@ func hit_with_bullet(damage,team,bullet):
 
 func _ready():
 	$firerate.wait_time = FIRERATE
+	
 
 func _input(event):
 	if event.is_action_pressed("fire") && !reload:
 		$firerate.start()
 		reload = true
 		var instance = bullet.instantiate()
-		instance.position = global_transform.basis_xform(Vector2.UP)*100 + position
+		instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
 		instance.start_up(DAMAGE,true)
 		instance.rotation = rotation
 		get_parent().add_child(instance)
 
 func _physics_process(delta):
+	var instance = trail.instantiate()
+	instance.position = position
+	instance.rotation = rotation
+	instance.modulate = Color(.8,.4,1,1)
+	instance.startup(true)
+	instance.z_index = -1
+	get_parent().add_child(instance)
 	# Get thge input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var rdirection = Input.get_axis("rotate_right","rotate_left")
