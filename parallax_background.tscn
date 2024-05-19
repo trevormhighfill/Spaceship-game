@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bed4r2auk2t8"]
+
+[ext_resource type="Script" path="res://parallax_background.gd" id="1_6gpon"]
+[ext_resource type="Texture2D" uid="uid://cod085vb8wc3w" path="res://deep_space.png" id="1_q60bf"]
+[ext_resource type="Texture2D" uid="uid://c55hkevsgrpta" path="res://starsfull.png" id="3_iyuqw"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+follow_viewport_scale = 1000.0
+scroll_offset = Vector2(1, 0)
+scroll_limit_end = Vector2(1680, 725)
+scroll_ignore_camera_zoom = true
+script = ExtResource("1_6gpon")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="DeepSpace" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(963.5, 465)
+scale = Vector2(15.0234, 9.71875)
+texture = ExtResource("1_q60bf")
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+rotation = -6.28319
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Starsfull" type="Sprite2D" parent="ParallaxLayer2"]
+self_modulate = Color(0.486275, 0.486275, 0.486275, 1)
+position = Vector2(963, 540)
+texture = ExtResource("3_iyuqw")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+rotation = -6.28319
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Starsfull2" type="Sprite2D" parent="ParallaxLayer3"]
+self_modulate = Color(0.329412, 0.329412, 0.329412, 1)
+position = Vector2(963, 540)
+texture = ExtResource("3_iyuqw")
+flip_v = true
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+rotation = -6.28319
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Starsfull3" type="Sprite2D" parent="ParallaxLayer4"]
+self_modulate = Color(0.168627, 0.168627, 0.168627, 1)
+position = Vector2(963, 540)
+texture = ExtResource("3_iyuqw")
+flip_h = true

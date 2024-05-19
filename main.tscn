@@ -1,17 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbpado6vgb8ep"]
+[gd_scene load_steps=5 format=3 uid="uid://cbpado6vgb8ep"]
 
 [ext_resource type="PackedScene" uid="uid://ceh1es7i0ljmn" path="res://ship.tscn" id="1_7bty8"]
 [ext_resource type="Texture2D" uid="uid://gscdrnm1mp61" path="res://icon.svg" id="2_60ffx"]
+[ext_resource type="PackedScene" uid="uid://bed4r2auk2t8" path="res://parallax_background.tscn" id="3_ogkwt"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="4_pjncf"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_7bty8")]
-position = Vector2(545, 267)
+position = Vector2(654, 324)
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(281, 345)
 texture = ExtResource("2_60ffx")
 
-[node name="Icon2" type="Sprite2D" parent="."]
-position = Vector2(996, 150)
-texture = ExtResource("2_60ffx")
+[node name="ParallaxBackground" parent="." instance=ExtResource("3_ogkwt")]
+scroll_offset = Vector2(1, 0)
+scroll_limit_end = Vector2(0, 0)
+script = null
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+script = ExtResource("4_pjncf")
