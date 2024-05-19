@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cb5r182hadok2" path="res://ship_visuals.tscn" id="1_a6thr"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_fs1ww"]
 
-[node name="enemy" type="CharacterBody2D"]
+[node name="enemy" type="CharacterBody2D" groups=["enemy_ship"]]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource("1_fs1ww")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

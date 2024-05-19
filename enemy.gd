@@ -37,11 +37,14 @@ func _ready():
 
 func _physics_process(delta):
 	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i).get_collider()
-		collision.add_to_group("ship")
-		get_tree().call_group("ship","hit_with_bullet",DAMAGE,false,self)
-		if collision.is_in_group("ship"):
-			collision.remove_from_group("ship")
+		var collision = get_slide_collision(i)
+		var collider =  get_slide_collision(i).get_collider()
+		if collider != null:
+			if !collider.is_in_group("enemy_ship"):
+				collider.add_to_group("ship")
+				get_tree().call_group("ship","hit_with_bullet",DAMAGE,false,self)
+				if collider.is_in_group("ship"):
+					collider.remove_from_group("ship")
 			
 	if !reload && false:
 		$firerate.start()
