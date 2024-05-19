@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+var FIRERATE = 0.3
 var DAMAGE = 10
 var bullet = preload("res://bullet.tscn")
 var health = 100
@@ -9,6 +10,7 @@ var ANGULAR_SPEED = .05
 var ACCELERATION = 1500
 var DRAG = 100
 var current_speed = 0.0
+var reload : bool = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #var aim = get_global_transform().basis
@@ -20,6 +22,19 @@ func hit_with_bullet(damage,team,bullet):
 		if health <= 0:
 			print("GAMEOVER!!!!!!!!!!!")
 			queue_free()
+
+func _ready():
+	$firerate.wait_time = FIRERATE
+
+func _input(event):
+	if event.is_action_pressed("fire") && !reload:
+		$firerate.start()
+		reload = true
+		var instance = bullet.instantiate()
+		instance.position = global_transform.basis_xform(Vector2.UP)*100 + position
+		instance.start_up(DAMAGE,true)
+		instance.rotation = rotation
+		get_parent().add_child(instance)
 
 func _physics_process(delta):
 	# Get thge input direction and handle the movement/deceleration.
@@ -40,11 +55,9 @@ func _physics_process(delta):
 		else:
 			velocity = Vector2.ZERO
 	
-	if Input.is_action_pressed("fire"):
-		var instance = bullet.instantiate()
-		instance.position = global_transform.basis_xform(Vector2.UP)*100 + position
-		instance.start_up(DAMAGE,true)
-		instance.rotation = rotation
-		get_parent().add_child(instance)
 	
 	move_and_slide()
+
+
+func firerate_timeout():
+	reload = false

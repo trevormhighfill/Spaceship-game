@@ -17,3 +17,7 @@ texture = ExtResource("2_wyju7")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(1, 3)
 polygon = PackedVector2Array(-2, -66, 63, 64, -67, 65)
+
+[node name="firerate" type="Timer" parent="."]
+
+[connection signal="timeout" from="firerate" to="." method="firerate_timeout"]
