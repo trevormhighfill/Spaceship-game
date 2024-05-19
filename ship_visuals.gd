@@ -11,6 +11,6 @@ func startup(trail):
 
 func _physics_process(delta):
 	if is_trail:
-		modulate -= Color(0,0.1,0,0.1)
+		modulate -= Color(0,0,0,0.1)
 		if modulate.a <= 0:
 			queue_free()

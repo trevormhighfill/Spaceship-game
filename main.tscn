@@ -1,18 +1,112 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbpado6vgb8ep"]
+[gd_scene load_steps=6 format=3 uid="uid://cbpado6vgb8ep"]
 
 [ext_resource type="PackedScene" uid="uid://ceh1es7i0ljmn" path="res://ship.tscn" id="1_7bty8"]
-[ext_resource type="PackedScene" uid="uid://bdd7ggtlusmuj" path="res://bullet.tscn" id="3_lpypr"]
+[ext_resource type="PackedScene" uid="uid://bfqstblvfofgf" path="res://enemy.tscn" id="1_bp36x"]
+[ext_resource type="Texture2D" uid="uid://ce3km3df824vi" path="res://square.png" id="3_gycnv"]
 [ext_resource type="PackedScene" uid="uid://bed4r2auk2t8" path="res://parallax_background.tscn" id="3_ogkwt"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5brw"]
+size = Vector2(316, 317)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_7bty8")]
-position = Vector2(654, 324)
+[node name="Node2D" type="Node2D"]
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_ogkwt")]
 scroll_limit_end = Vector2(0, 0)
 script = null
 
-[node name="bullet" parent="." instance=ExtResource("3_lpypr")]
-position = Vector2(256, 256)
-rotation = -6.22342
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(-16245, 948)
+freeze = true
+
+[node name="Square" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(1, 100)
+texture = ExtResource("3_gycnv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, -0.5)
+scale = Vector2(1, 100)
+shape = SubResource("RectangleShape2D_t5brw")
+
+[node name="Square2" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(31494, 0)
+scale = Vector2(1, 100)
+texture = ExtResource("3_gycnv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(31494, -0.5)
+scale = Vector2(1, 100)
+shape = SubResource("RectangleShape2D_t5brw")
+
+[node name="Square3" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(15692, 15865)
+rotation = 1.5703
+scale = Vector2(1, 100)
+texture = ExtResource("3_gycnv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(15692.5, 15865)
+rotation = 1.5703
+scale = Vector2(1, 100)
+shape = SubResource("RectangleShape2D_t5brw")
+
+[node name="Square4" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(15793, -15680)
+rotation = 1.5703
+scale = Vector2(1, 100)
+texture = ExtResource("3_gycnv")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(15793.5, -15680)
+rotation = 1.5703
+scale = Vector2(1, 100)
+shape = SubResource("RectangleShape2D_t5brw")
+
+[node name="main_ship" parent="." instance=ExtResource("1_7bty8")]
+position = Vector2(2156, 1350)
+
+[node name="enemy" parent="." instance=ExtResource("1_bp36x")]
+
+[node name="enemy2" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(3974, 1083)
+
+[node name="enemy3" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(582, 2203)
+
+[node name="enemy4" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-906, 1347)
+
+[node name="enemy5" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-416, -952)
+
+[node name="enemy6" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(3558, 131)
+
+[node name="enemy7" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(166, 1251)
+
+[node name="enemy8" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-1322, 395)
+
+[node name="enemy9" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(4678, -1461)
+
+[node name="enemy10" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(8652, -378)
+
+[node name="enemy11" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(5260, 742)
+
+[node name="enemy12" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(3772, -114)
+
+[node name="enemy13" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(4262, -2413)
+
+[node name="enemy14" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(8236, -1330)
+
+[node name="enemy15" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(4844, -210)
+
+[node name="enemy16" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(3356, -1066)

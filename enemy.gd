@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
+var player
 var FIRERATE = 0.3
-var DAMAGE = 50
-var BULLET_SPEED = 60
+var DAMAGE = 10
+var BULLET_SPEED = 1
 var bullet = preload("res://bullet.tscn")
 var trail = preload("res://ship_visuals.tscn")
 var health = 100
@@ -10,7 +11,7 @@ var max_health = 100
 var MAX_SPEED = 1000
 var ANGULAR_SPEED = .05
 var ACCELERATION = 1500
-var DRAG = 100
+var DRAG = 1000
 var current_speed = 0.0
 var reload : bool = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -19,45 +20,50 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func hit_with_bullet(damage,team,bullet):
 	remove_from_group("ship")
-	if team == false:
+	if team == true:
 		bullet.queue_free()
 		health -= damage
 		if health <= 0:
 			print("GAMEOVER!!!!!!!!!!!")
-			get_tree().change_scene_to_file("res://main.tscn")
+			queue_free()
 
 func _ready():
+	player = get_parent().find_child("main_ship")
 	$firerate.wait_time = FIRERATE
 	
 
-func _input(event):
-	if event.is_action_pressed("fire") && !reload:
+
+
+
+func _physics_process(delta):
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i).get_collider()
+		collision.add_to_group("ship")
+		get_tree().call_group("ship","hit_with_bullet",DAMAGE,false,self)
+		if collision.is_in_group("ship"):
+			collision.remove_from_group("ship")
+			
+	if !reload && false:
 		$firerate.start()
 		reload = true
 		var instance = bullet.instantiate()
 		instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
-		instance.start_up(DAMAGE,BULLET_SPEED,true)
+		instance.start_up(DAMAGE,BULLET_SPEED,false)
 		instance.rotation = rotation
 		get_parent().add_child(instance)
-
-func _physics_process(delta):
 	var instance = trail.instantiate()
 	instance.position = position
 	instance.rotation = rotation
-	instance.modulate = Color(.4,.4,1,1)
+	instance.modulate = Color(1,.4,.4,1)
 	instance.startup(true)
 	instance.z_index = -1
 	get_parent().add_child(instance)
 	# Get thge input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var rdirection = Input.get_axis("rotate_right","rotate_left")
-	if rdirection:
-		
-		rotate(-rdirection * ANGULAR_SPEED)
-	else:
-		rotate(0)
+	look_at(player.position)
+	rotate(PI/2)
 	var pdirection = global_transform.basis_xform(Vector2.UP)
-	if Input.is_action_pressed("foward"):
+	if true:
 		velocity += (pdirection * ACCELERATION * delta)
 		velocity = velocity.limit_length(MAX_SPEED)
 	else:

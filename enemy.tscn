@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfqstblvfofgf"]
+
+[ext_resource type="PackedScene" uid="uid://cb5r182hadok2" path="res://ship_visuals.tscn" id="1_a6thr"]
+[ext_resource type="Script" path="res://enemy.gd" id="1_fs1ww"]
+
+[node name="enemy" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_fs1ww")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-1, 4)
+polygon = PackedVector2Array(-2, -66, 63, 64, -67, 65)
+
+[node name="firerate" type="Timer" parent="."]
+
+[node name="Ship_visuals" parent="." instance=ExtResource("1_a6thr")]
+modulate = Color(1, 0, 0.0156863, 1)
+
+[connection signal="timeout" from="firerate" to="." method="firerate_timeout" flags=18]
