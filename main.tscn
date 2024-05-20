@@ -1,12 +1,104 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbpado6vgb8ep"]
+[gd_scene load_steps=12 format=3 uid="uid://cbpado6vgb8ep"]
 
 [ext_resource type="PackedScene" uid="uid://ceh1es7i0ljmn" path="res://ship.tscn" id="1_7bty8"]
 [ext_resource type="PackedScene" uid="uid://bfqstblvfofgf" path="res://enemy.tscn" id="1_bp36x"]
 [ext_resource type="Texture2D" uid="uid://ce3km3df824vi" path="res://square.png" id="3_gycnv"]
 [ext_resource type="PackedScene" uid="uid://bed4r2auk2t8" path="res://parallax_background.tscn" id="3_ogkwt"]
+[ext_resource type="Script" path="res://CanvasLayer.gd" id="5_ux8o4"]
+[ext_resource type="PackedScene" uid="uid://b8jf4xd8y4qgi" path="res://workshop_panel.tscn" id="6_u0057"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5brw"]
 size = Vector2(316, 317)
+
+[sub_resource type="Animation" id="Animation_j455j"]
+resource_name = "workshop_slide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1947, 0), Vector2(-2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1939, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ihnjc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1947, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("../Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1935, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_2xp2b"]
+resource_name = "workshop_slide_out"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2, 0), Vector2(-1959, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1935, 4), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qwkey"]
+_data = {
+"RESET": SubResource("Animation_ihnjc"),
+"workshop_slide": SubResource("Animation_j455j"),
+"workshop_slide_out": SubResource("Animation_2xp2b")
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -64,49 +156,234 @@ shape = SubResource("RectangleShape2D_t5brw")
 [node name="main_ship" parent="." instance=ExtResource("1_7bty8")]
 position = Vector2(2156, 1350)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("5_ux8o4")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 1935.0
+offset_top = 4.0
+offset_right = 2359.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 50
+text = "WORKSHOP (TAB)"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = -1947.0
+offset_right = 3.0
+offset_bottom = 1079.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 314.0
+offset_bottom = 1084.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="Panel" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel2" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel3" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel4" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel5" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel6" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel7" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel8" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel9" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel10" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel11" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel12" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel13" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel14" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel15" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel16" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel17" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel18" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel19" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel20" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel21" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel22" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel23" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel24" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel25" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel26" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel27" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel28" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel29" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel30" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel31" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="Panel32" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Panel"]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_qwkey")
+}
+
 [node name="enemy" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-572, -753)
 
 [node name="enemy2" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(3974, 1083)
+position = Vector2(-2661, 2213)
 
 [node name="enemy3" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(582, 2203)
+position = Vector2(5123, 2739)
 
 [node name="enemy4" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-906, 1347)
+position = Vector2(-807, -1681)
 
 [node name="enemy5" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-416, -952)
+position = Vector2(-2896, 1285)
 
 [node name="enemy6" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(3558, 131)
+position = Vector2(4888, 1811)
 
 [node name="enemy7" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(166, 1251)
+position = Vector2(-457, -1203)
 
 [node name="enemy8" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-1322, 395)
+position = Vector2(-2546, 1763)
 
 [node name="enemy9" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(4678, -1461)
+position = Vector2(5238, 2289)
 
 [node name="enemy10" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(8652, -378)
+position = Vector2(-968, -840)
 
 [node name="enemy11" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(5260, 742)
+position = Vector2(-3057, 2126)
 
 [node name="enemy12" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(3772, -114)
+position = Vector2(4727, 2652)
 
 [node name="enemy13" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(4262, -2413)
+position = Vector2(-780, -1143)
 
 [node name="enemy14" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(8236, -1330)
+position = Vector2(-2869, 1823)
 
 [node name="enemy15" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(4844, -210)
+position = Vector2(4915, 2349)
 
 [node name="enemy16" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(3356, -1066)
+position = Vector2(101, -867)
+
+[node name="enemy17" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-1988, 2099)
+
+[node name="enemy18" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(5796, 2625)
+
+[node name="enemy19" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(114, -1372)
+
+[node name="enemy20" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-1975, 1594)
+
+[node name="enemy21" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(5809, 2120)
+
+[node name="enemy22" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-303, -1372)
+
+[node name="enemy23" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-2392, 1594)
+
+[node name="enemy24" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(5392, 2120)
+
+[node name="enemy25" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-330, -928)
+
+[node name="enemy26" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-2419, 2038)
+
+[node name="enemy27" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(5365, 2564)
+
+[node name="enemy28" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-391, -592)
+
+[node name="enemy29" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-2480, 2374)
+
+[node name="enemy30" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(5304, 2900)
+
+[node name="enemy31" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-600, -1393)
+
+[node name="enemy32" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-2689, 1573)
+
+[node name="enemy33" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(5095, 2099)
+
+[node name="enemy34" parent="." instance=ExtResource("1_bp36x")]
+position = Vector2(-694, -989)

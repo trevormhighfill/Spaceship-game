@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cb5r182hadok2" path="res://ship_visuals.tscn" id="2_so82j"]
 
 [node name="main_ship" type="CharacterBody2D"]
+position = Vector2(-1, 0)
 script = ExtResource("1_51og0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
