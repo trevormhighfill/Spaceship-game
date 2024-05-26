@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cbpado6vgb8ep"]
+[gd_scene load_steps=15 format=3 uid="uid://cbpado6vgb8ep"]
 
 [ext_resource type="PackedScene" uid="uid://ceh1es7i0ljmn" path="res://ship.tscn" id="1_7bty8"]
 [ext_resource type="PackedScene" uid="uid://bfqstblvfofgf" path="res://enemy.tscn" id="1_bp36x"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://7md4o0muo7ps" path="res://resources/upgrades/upgrade_thrusters.tres" id="6_bl6gp"]
 [ext_resource type="PackedScene" uid="uid://b8jf4xd8y4qgi" path="res://workshop_panel.tscn" id="6_u0057"]
 [ext_resource type="Script" path="res://scripts/Credit.gd" id="6_wtk1g"]
+[ext_resource type="Resource" uid="uid://cfy8ijhnq8ial" path="res://resources/upgrades/upgrade_minigun.tres" id="7_a5gnd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5brw"]
 size = Vector2(316, 317)
@@ -189,6 +190,10 @@ layout_mode = 2
 [node name="Panel" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
 layout_mode = 2
 upgrade_resource = ExtResource("6_bl6gp")
+
+[node name="Panel2" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+layout_mode = 2
+upgrade_resource = ExtResource("7_a5gnd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Panel"]
 reset_on_save = false

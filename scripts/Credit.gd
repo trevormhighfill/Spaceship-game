@@ -1,6 +1,9 @@
 extends Label
 
-var credit : int
+@export var credit : int
+
+func _ready():
+	set_credit(1000)
 
 func set_credit(amount: int):
 	credit = amount
