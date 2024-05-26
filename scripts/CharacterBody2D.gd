@@ -23,7 +23,6 @@ func hit_with_bullet(damage,team,bullet):
 		bullet.queue_free()
 		health -= damage
 		if health <= 0:
-			print("GAMEOVER!!!!!!!!!!!")
 			get_tree().change_scene_to_file("res://main.tscn")
 
 func _ready():

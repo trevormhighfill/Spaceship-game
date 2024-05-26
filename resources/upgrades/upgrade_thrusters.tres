@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="upgrade" load_steps=3 format=3 uid="uid://7md4o0muo7ps"]
+
+[ext_resource type="Texture2D" uid="uid://bv7djvga5ur3y" path="res://sprites/ship.png" id="1_31clf"]
+[ext_resource type="Script" path="res://resources/upgrade.gd" id="1_obgth"]
+
+[resource]
+script = ExtResource("1_obgth")
+name = "Thrusters"
+price = 100
+description = "Is your ship not fast enough? Do you crave speed? I introduce to you Thrusters!"
+display = ExtResource("1_31clf")

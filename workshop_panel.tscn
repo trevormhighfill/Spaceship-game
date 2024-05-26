@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://b8jf4xd8y4qgi"]
+[gd_scene load_steps=2 format=3 uid="uid://b8jf4xd8y4qgi"]
+
+[ext_resource type="Script" path="res://scripts/workshop_panel.gd" id="1_h0cuh"]
 
 [node name="Panel" type="Panel"]
 custom_minimum_size = Vector2(300, 300)
+script = ExtResource("1_h0cuh")
 
 [node name="buy" type="Button" parent="."]
 layout_mode = 2
@@ -12,8 +15,10 @@ text = "Buy"
 
 [node name="desc" type="RichTextLabel" parent="."]
 layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
 offset_right = 94.0
-offset_bottom = 261.0
+offset_bottom = 255.0
 theme_override_font_sizes/normal_font_size = 10
 text = "INFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIO
 "
@@ -21,9 +26,10 @@ text = "INFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORMATIONINFORM
 [node name="display" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 97.0
-offset_top = 4.0
+offset_top = 28.0
 offset_right = 297.0
-offset_bottom = 204.0
+offset_bottom = 228.0
+expand_mode = 1
 
 [node name="name" type="Label" parent="."]
 layout_mode = 0
@@ -33,7 +39,7 @@ offset_right = 295.0
 offset_bottom = 299.0
 text = "NAMENAME"
 
-[node name="Label" type="Label" parent="."]
+[node name="cost" type="Label" parent="."]
 layout_mode = 0
 offset_left = 58.0
 offset_top = 275.0

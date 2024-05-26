@@ -13,6 +13,8 @@ var ANGULAR_SPEED = .05
 var ACCELERATION = 1500
 var DRAG = 1000
 var current_speed = 0.0
+var credit_min = 10
+var credit_max = 15
 var reload : bool = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -24,7 +26,7 @@ func hit_with_bullet(damage,team,bullet):
 		bullet.queue_free()
 		health -= damage
 		if health <= 0:
-			print("GAMEOVER!!!!!!!!!!!")
+			$"../CanvasLayer/Credit".add_credit(randi_range(credit_min,credit_max))
 			queue_free()
 
 func _ready():

@@ -1,14 +1,43 @@
-[gd_scene load_steps=12 format=3 uid="uid://cbpado6vgb8ep"]
+[gd_scene load_steps=14 format=3 uid="uid://cbpado6vgb8ep"]
 
 [ext_resource type="PackedScene" uid="uid://ceh1es7i0ljmn" path="res://ship.tscn" id="1_7bty8"]
 [ext_resource type="PackedScene" uid="uid://bfqstblvfofgf" path="res://enemy.tscn" id="1_bp36x"]
-[ext_resource type="Texture2D" uid="uid://ce3km3df824vi" path="res://square.png" id="3_gycnv"]
-[ext_resource type="PackedScene" uid="uid://bed4r2auk2t8" path="res://parallax_background.tscn" id="3_ogkwt"]
-[ext_resource type="Script" path="res://CanvasLayer.gd" id="5_ux8o4"]
+[ext_resource type="Texture2D" uid="uid://ce3km3df824vi" path="res://sprites/square.png" id="2_jg2jy"]
+[ext_resource type="PackedScene" uid="uid://c383poknmeu27" path="res://parallax_background.tscn" id="3_ogkwt"]
+[ext_resource type="Script" path="res://scripts/CanvasLayer.gd" id="4_pmkev"]
+[ext_resource type="Resource" uid="uid://7md4o0muo7ps" path="res://resources/upgrades/upgrade_thrusters.tres" id="6_bl6gp"]
 [ext_resource type="PackedScene" uid="uid://b8jf4xd8y4qgi" path="res://workshop_panel.tscn" id="6_u0057"]
+[ext_resource type="Script" path="res://scripts/Credit.gd" id="6_wtk1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5brw"]
 size = Vector2(316, 317)
+
+[sub_resource type="Animation" id="Animation_ihnjc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1947, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("../Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1935, 4)]
+}
 
 [sub_resource type="Animation" id="Animation_j455j"]
 resource_name = "workshop_slide"
@@ -36,33 +65,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1939, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ihnjc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1947, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("../Label:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1935, 4)]
 }
 
 [sub_resource type="Animation" id="Animation_2xp2b"]
@@ -112,7 +114,7 @@ freeze = true
 
 [node name="Square" type="Sprite2D" parent="RigidBody2D"]
 scale = Vector2(1, 100)
-texture = ExtResource("3_gycnv")
+texture = ExtResource("2_jg2jy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(0, -0.5)
@@ -122,7 +124,7 @@ shape = SubResource("RectangleShape2D_t5brw")
 [node name="Square2" type="Sprite2D" parent="RigidBody2D"]
 position = Vector2(31494, 0)
 scale = Vector2(1, 100)
-texture = ExtResource("3_gycnv")
+texture = ExtResource("2_jg2jy")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(31494, -0.5)
@@ -133,7 +135,7 @@ shape = SubResource("RectangleShape2D_t5brw")
 position = Vector2(15692, 15865)
 rotation = 1.5703
 scale = Vector2(1, 100)
-texture = ExtResource("3_gycnv")
+texture = ExtResource("2_jg2jy")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(15692.5, 15865)
@@ -145,7 +147,7 @@ shape = SubResource("RectangleShape2D_t5brw")
 position = Vector2(15793, -15680)
 rotation = 1.5703
 scale = Vector2(1, 100)
-texture = ExtResource("3_gycnv")
+texture = ExtResource("2_jg2jy")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(15793.5, -15680)
@@ -158,14 +160,14 @@ position = Vector2(2156, 1350)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
-script = ExtResource("5_ux8o4")
+script = ExtResource("4_pmkev")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 1935.0
+offset_left = 11.0
 offset_top = 4.0
-offset_right = 2359.0
-offset_bottom = 144.0
-theme_override_font_sizes/font_size = 50
+offset_right = 226.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 25
 text = "WORKSHOP (TAB)"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -186,105 +188,26 @@ layout_mode = 2
 
 [node name="Panel" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
 layout_mode = 2
-
-[node name="Panel2" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel3" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel4" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel5" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel6" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel7" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel8" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel9" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel10" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel11" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel12" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel13" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel14" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel15" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel16" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel17" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel18" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel19" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel20" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel21" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel22" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel23" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel24" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel25" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel26" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel27" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel28" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel29" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel30" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel31" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
-
-[node name="Panel32" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
-layout_mode = 2
+upgrade_resource = ExtResource("6_bl6gp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Panel"]
 reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_qwkey")
 }
+
+[node name="Credit" type="Label" parent="CanvasLayer"]
+offset_left = 700.0
+offset_top = 1.0
+offset_right = 1922.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 25
+text = "CREDIT: 0
+"
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+script = ExtResource("6_wtk1g")
 
 [node name="enemy" parent="." instance=ExtResource("1_bp36x")]
 position = Vector2(-572, -753)

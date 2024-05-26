@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://ceh1es7i0ljmn"]
 
-[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_51og0"]
+[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_fjeap"]
 [ext_resource type="PackedScene" uid="uid://cb5r182hadok2" path="res://ship_visuals.tscn" id="2_so82j"]
 
 [node name="main_ship" type="CharacterBody2D"]
 position = Vector2(-1, 0)
-script = ExtResource("1_51og0")
+script = ExtResource("1_fjeap")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)

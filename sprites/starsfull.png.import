@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cod085vb8wc3w"
-path="res://.godot/imported/deep_space.png-f179f7f6e4aefcb2f4ee81edd5e69789.ctex"
+uid="uid://c55hkevsgrpta"
+path="res://.godot/imported/starsfull.png-3f1180100652b94938e100f2f379b5c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://deep_space.png"
-dest_files=["res://.godot/imported/deep_space.png-f179f7f6e4aefcb2f4ee81edd5e69789.ctex"]
+source_file="res://sprites/starsfull.png"
+dest_files=["res://.godot/imported/starsfull.png-3f1180100652b94938e100f2f379b5c6.ctex"]
 
 [params]
 
