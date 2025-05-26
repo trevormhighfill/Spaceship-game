@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ship" load_steps=3 format=3 uid="uid://bdu4qedohbiff"]
+
+[ext_resource type="Script" path="res://resources/ship.gd" id="1_eq4lw"]
+[ext_resource type="Texture2D" uid="uid://bv7djvga5ur3y" path="res://sprites/ship.png" id="2_c3inf"]
+
+[resource]
+script = ExtResource("1_eq4lw")
+name = "Starter Ship"
+price = 0
+description = "This is the first ship you have unlocked! It has very basic stats compared to other ships."
+ship_visual = ExtResource("2_c3inf")
+FIRERATE = 0.3
+DAMAGE = 50.0
+BULLET_SPEED = 60.0
+hold_to_shoot = false
+MAX_HEALTH = 100.0
+MAX_SPEED = 1500.0
+ANGULAR_SPEED = 0.05
+ACCELERATION = 1500.0
+DRAG = 300.0
+TRAIL_COLOR = Color(0.4, 0.4, 1, 1)

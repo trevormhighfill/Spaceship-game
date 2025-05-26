@@ -18,8 +18,7 @@ func _ready():
 func upgrade_bought():
 	if credit.credit >= upgrade_resource.price:
 		credit.remove_credit(upgrade_resource.price)
-		print(upgrade_resource)
-		print(upgrade_resource.effects)
+		print("bought ", upgrade_resource.name)
 		player.add_upgrade(upgrade_resource)
 		visible = false
 	else:

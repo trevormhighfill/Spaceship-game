@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8jf4xd8y4qgi"]
+[gd_scene load_steps=2 format=3 uid="uid://b8fjvrf7602er"]
 
-[ext_resource type="Script" path="res://scripts/workshop_panel.gd" id="1_h0cuh"]
+[ext_resource type="Script" path="res://scripts/workshop/ship_workshop_panel.gd" id="1_paivh"]
 
 [node name="Panel" type="Panel"]
 custom_minimum_size = Vector2(300, 300)
-script = ExtResource("1_h0cuh")
+script = ExtResource("1_paivh")
 
 [node name="buy" type="Button" parent="."]
 layout_mode = 2
@@ -12,6 +12,14 @@ offset_top = 269.0
 offset_right = 46.0
 offset_bottom = 301.0
 text = "Buy"
+
+[node name="equip" type="Button" parent="."]
+visible = false
+layout_mode = 2
+offset_top = 269.0
+offset_right = 46.0
+offset_bottom = 301.0
+text = "Equip"
 
 [node name="desc" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -47,4 +55,5 @@ offset_right = 137.0
 offset_bottom = 301.0
 text = "$$$$$$$$$"
 
-[connection signal="pressed" from="buy" to="." method="upgrade_bought"]
+[connection signal="pressed" from="buy" to="." method="ship_bought"]
+[connection signal="pressed" from="equip" to="." method="ship_equip"]

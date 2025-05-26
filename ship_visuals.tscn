@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://cb5r182hadok2"]
 
-[ext_resource type="Script" path="res://scripts/ship_visuals.gd" id="1_wy2hu"]
+[ext_resource type="Script" path="res://scripts/player/ship_visuals.gd" id="1_w3wj5"]
 [ext_resource type="Texture2D" uid="uid://bv7djvga5ur3y" path="res://sprites/ship.png" id="2_k47dj"]
 
 [node name="Ship_visuals" type="Node2D"]
-script = ExtResource("1_wy2hu")
+script = ExtResource("1_w3wj5")
 
 [node name="Ship" type="Sprite2D" parent="."]
-position = Vector2(9.53674e-07, 3)
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_k47dj")
