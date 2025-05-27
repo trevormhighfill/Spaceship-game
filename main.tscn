@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cbpado6vgb8ep"]
+[gd_scene load_steps=19 format=3 uid="uid://cbpado6vgb8ep"]
 
 [ext_resource type="PackedScene" uid="uid://ceh1es7i0ljmn" path="res://ship.tscn" id="1_7bty8"]
 [ext_resource type="PackedScene" uid="uid://bfqstblvfofgf" path="res://enemy.tscn" id="1_bp36x"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://c383poknmeu27" path="res://parallax_background.tscn" id="3_ogkwt"]
 [ext_resource type="Script" path="res://scripts/workshop/CanvasLayer.gd" id="4_pgm8f"]
 [ext_resource type="PackedScene" uid="uid://b8fjvrf7602er" path="res://ship_workshop_panel.tscn" id="5_nidiu"]
+[ext_resource type="Script" path="res://ship_workshop_container.gd" id="5_nypf8"]
 [ext_resource type="Resource" uid="uid://bdu4qedohbiff" path="res://resources/ships/ship_default.tres" id="6_05iny"]
 [ext_resource type="Resource" uid="uid://7md4o0muo7ps" path="res://resources/upgrades/upgrade_thrusters.tres" id="6_bl6gp"]
 [ext_resource type="PackedScene" uid="uid://b8jf4xd8y4qgi" path="res://upgrade_workshop_panel.tscn" id="6_u0057"]
+[ext_resource type="Resource" uid="uid://d0hsbs6lsw5je" path="res://resources/ships/ship_pacer.tres" id="7_3cfcw"]
 [ext_resource type="Resource" uid="uid://cfy8ijhnq8ial" path="res://resources/upgrades/upgrade_minigun.tres" id="7_a5gnd"]
 [ext_resource type="Script" path="res://scripts/ui+background/Credit.gd" id="8_uucp0"]
 
@@ -191,11 +193,16 @@ offset_bottom = 1080.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/ScrollContainer2"]
 layout_mode = 2
+script = ExtResource("5_nypf8")
 
-[node name="Panel" parent="CanvasLayer/Panel/ScrollContainer2/HBoxContainer" instance=ExtResource("5_nidiu")]
+[node name="default" parent="CanvasLayer/Panel/ScrollContainer2/HBoxContainer" instance=ExtResource("5_nidiu")]
 layout_mode = 2
 ship_resource = ExtResource("6_05iny")
 default_ship = true
+
+[node name="pacer" parent="CanvasLayer/Panel/ScrollContainer2/HBoxContainer" instance=ExtResource("5_nidiu")]
+layout_mode = 2
+ship_resource = ExtResource("7_3cfcw")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Panel"]
 layout_mode = 0
@@ -205,11 +212,11 @@ offset_bottom = 1084.0
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/ScrollContainer"]
 layout_mode = 2
 
-[node name="Panel" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+[node name="thrusters" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
 layout_mode = 2
 upgrade_resource = ExtResource("6_bl6gp")
 
-[node name="Panel2" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
+[node name="minigun" parent="CanvasLayer/Panel/ScrollContainer/VBoxContainer" instance=ExtResource("6_u0057")]
 layout_mode = 2
 upgrade_resource = ExtResource("7_a5gnd")
 
@@ -232,104 +239,5 @@ vertical_alignment = 1
 uppercase = true
 script = ExtResource("8_uucp0")
 
-[node name="enemy" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-572, -753)
-
-[node name="enemy2" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-2661, 2213)
-
-[node name="enemy3" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(5123, 2739)
-
 [node name="enemy4" parent="." instance=ExtResource("1_bp36x")]
 position = Vector2(-807, -1681)
-
-[node name="enemy5" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-2896, 1285)
-
-[node name="enemy6" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(4888, 1811)
-
-[node name="enemy7" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-457, -1203)
-
-[node name="enemy8" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-2546, 1763)
-
-[node name="enemy9" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(5238, 2289)
-
-[node name="enemy10" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-968, -840)
-
-[node name="enemy11" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-3057, 2126)
-
-[node name="enemy12" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(4727, 2652)
-
-[node name="enemy13" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-780, -1143)
-
-[node name="enemy14" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-2869, 1823)
-
-[node name="enemy15" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(4915, 2349)
-
-[node name="enemy16" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(101, -867)
-
-[node name="enemy17" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-1988, 2099)
-
-[node name="enemy18" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(5796, 2625)
-
-[node name="enemy19" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(114, -1372)
-
-[node name="enemy20" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-1975, 1594)
-
-[node name="enemy21" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(5809, 2120)
-
-[node name="enemy22" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-303, -1372)
-
-[node name="enemy23" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-2392, 1594)
-
-[node name="enemy24" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(5392, 2120)
-
-[node name="enemy25" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-330, -928)
-
-[node name="enemy26" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-2419, 2038)
-
-[node name="enemy27" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(5365, 2564)
-
-[node name="enemy28" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-391, -592)
-
-[node name="enemy29" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-2480, 2374)
-
-[node name="enemy30" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(5304, 2900)
-
-[node name="enemy31" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-600, -1393)
-
-[node name="enemy32" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-2689, 1573)
-
-[node name="enemy33" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(5095, 2099)
-
-[node name="enemy34" parent="." instance=ExtResource("1_bp36x")]
-position = Vector2(-694, -989)

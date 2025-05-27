@@ -17,6 +17,6 @@ class_name ship
 @export var ANGULAR_SPEED : float  
 @export var ACCELERATION : float  
 @export var DRAG : float 
-@export var TRAIL_COLOR : Color
+@export var COLOR_SCHEME : Color
 
 

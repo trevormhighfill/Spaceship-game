@@ -13,7 +13,7 @@ var ANGULAR_SPEED = .05
 var ACCELERATION = 1500
 var DRAG = 300
 
-var TRAIL_COLOR = Color(.4,.4,1,1)
+var COLOR_SCHEME = Color(.4,.4,1,1)
 @onready var SHIP_VISUAL = $Ship_visuals/Ship
 #___________________________
 #___________________________
@@ -40,6 +40,7 @@ func _input(event):
 		$firerate.start()
 		reload = true
 		var instance = bullet.instantiate()
+		instance.COLOR = COLOR_SCHEME
 		instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
 		instance.start_up(DAMAGE,BULLET_SPEED,true)
 		instance.rotation = rotation
@@ -54,7 +55,7 @@ func change_ship(new_ship : ship):
 	ANGULAR_SPEED = new_ship.ANGULAR_SPEED
 	ACCELERATION = new_ship.ACCELERATION
 	DRAG = new_ship.DRAG
-	TRAIL_COLOR = new_ship.TRAIL_COLOR
+	COLOR_SCHEME = new_ship.COLOR_SCHEME
 	SHIP_VISUAL.texture = new_ship.ship_visual
 	$firerate.wait_time = FIRERATE
 	reload_upgrades()
@@ -109,7 +110,7 @@ func create_trail():
 	instance.get_node("Ship").texture = SHIP_VISUAL.texture
 	instance.position = position
 	instance.rotation = rotation
-	instance.modulate = TRAIL_COLOR
+	instance.modulate = COLOR_SCHEME
 	instance.startup(true)
 	instance.z_index = -1
 	get_parent().add_child(instance)

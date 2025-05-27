@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="ship" load_steps=3 format=3 uid="uid://d0hsbs6lsw5je"]
+
+[ext_resource type="Script" path="res://resources/ship.gd" id="1_rmh8c"]
+[ext_resource type="Texture2D" uid="uid://85uerb45mldu" path="res://sprites/ship_pacer.png" id="2_b6g6a"]
+
+[resource]
+script = ExtResource("1_rmh8c")
+name = "The Pacer"
+price = 1000
+description = "Do you have a thirst for speed? Well we have just the thing to quench your thirst! Introducing The Pacer, this new model has slightly faster bullet speed, and an increase in speed!"
+ship_visual = ExtResource("2_b6g6a")
+FIRERATE = 0.25
+DAMAGE = 25.0
+BULLET_SPEED = 80.0
+hold_to_shoot = false
+MAX_HEALTH = 60.0
+MAX_SPEED = 2000.0
+ANGULAR_SPEED = 0.1
+ACCELERATION = 1000.0
+DRAG = 300.0
+COLOR_SCHEME = Color(0.427451, 1, 0.6, 1)
