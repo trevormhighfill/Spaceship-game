@@ -1,5 +1,5 @@
 extends Resource
-class_name enemy_ship
+class_name enemy_ship_type
 
 @export var name:String
 @export var description:String

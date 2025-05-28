@@ -13,8 +13,8 @@
 [ext_resource type="Resource" uid="uid://cfy8ijhnq8ial" path="res://resources/upgrades/upgrade_minigun.tres" id="7_a5gnd"]
 [ext_resource type="Script" path="res://scripts/ui+background/Credit.gd" id="8_uucp0"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_spawning.gd" id="13_ycl06"]
-[ext_resource type="PackedScene" uid="uid://bfqstblvfofgf" path="res://crasher_ship.tscn" id="14_lkom5"]
-[ext_resource type="Resource" uid="uid://dw14vjw11xfu2" path="res://resources/enemy_ships/crasher_ship.tres" id="15_6o120"]
+[ext_resource type="PackedScene" uid="uid://bfqstblvfofgf" path="res://enemy_ship.tscn" id="14_lkom5"]
+[ext_resource type="Resource" uid="uid://dw14vjw11xfu2" path="res://resources/enemy_ships/crasher_ship.tres" id="15_de64x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5brw"]
 size = Vector2(316, 317)
@@ -244,6 +244,6 @@ script = ExtResource("8_uucp0")
 [node name="enemy_spawning" type="Node" parent="."]
 script = ExtResource("13_ycl06")
 
-[node name="crasher_ship" parent="." instance=ExtResource("14_lkom5")]
-position = Vector2(-6773, -2537)
-ship_type = ExtResource("15_6o120")
+[node name="enemy_ship" parent="." instance=ExtResource("14_lkom5")]
+position = Vector2(-2985, 3023)
+ship_type = ExtResource("15_de64x")

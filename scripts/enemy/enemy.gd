@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var ship_type : enemy_ship
+@export var ship_type : enemy_ship_type
 
 @onready var CAN_SHOOT = ship_type.CAN_SHOOT
 @onready var COLLISION_DAMAGE = ship_type.COLLISION_DAMAGE
@@ -36,7 +36,8 @@ func hit_with_bullet(damage,team,bullet):
 
 func _ready():
 	player = get_parent().find_child("main_ship")
-	$firerate.wait_time = FIRERATE
+	if CAN_SHOOT:
+		$firerate.wait_time = FIRERATE
 
 
 
