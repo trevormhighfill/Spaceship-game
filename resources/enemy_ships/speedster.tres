@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="enemy_ship_type" load_steps=3 format=3 uid="uid://btbcd3rgrvt1a"]
+
+[ext_resource type="Script" path="res://resources/enemy_ship_type.gd" id="1_d6tb2"]
+[ext_resource type="Texture2D" uid="uid://bv7djvga5ur3y" path="res://sprites/ship.png" id="2_uuyto"]
+
+[resource]
+script = ExtResource("1_d6tb2")
+name = "Speedster"
+description = "Incredibly fast, better to shoot before they get too close"
+ship_visual = ExtResource("2_uuyto")
+COLLISION_DAMAGE = 0.0
+CAN_SHOOT = true
+FIRERATE = 0.2
+BULLET_DAMAGE = 0.0
+BULLET_SPEED = 100.0
+MAX_HEALTH = 1.0
+MAX_SPEED = 2000.0
+ACCELERATION = 1000.0
+COLOR_SCHEME = Color(0.615686, 0.615686, 0.615686, 1)
+CREDIT_MIN = 50.0
+CREDIT_MAX = 75.0

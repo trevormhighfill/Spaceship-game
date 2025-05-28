@@ -15,7 +15,9 @@ extends CharacterBody2D
 @onready var CREDIT_MAX = ship_type.CREDIT_MAX
 @onready var COLOR_SCHEME = ship_type.COLOR_SCHEME
 
-var player
+@onready var SHIP_VISUAL = ship_type.ship_visual
+var credit_node
+var player : CharacterBody2D
 var bullet = preload("res://bullet.tscn")
 var trail = preload("res://ship_visuals.tscn")
 @onready var health = MAX_HEALTH
@@ -31,11 +33,11 @@ func hit_with_bullet(damage,team,bullet):
 		bullet.queue_free()
 		health -= damage
 		if health <= 0:
-			$"../CanvasLayer/Credit".add_credit(randi_range(CREDIT_MIN,CREDIT_MAX))
+			credit_node.add_credit(randi_range(CREDIT_MIN,CREDIT_MAX))
 			queue_free()
 
 func _ready():
-	player = get_parent().find_child("main_ship")
+	$Ship_visuals.change_visual(SHIP_VISUAL)
 	if CAN_SHOOT:
 		$firerate.wait_time = FIRERATE
 
@@ -44,12 +46,12 @@ func _ready():
 
 func _physics_process(delta):
 	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
+		#var collision = get_slide_collision(i)
 		var collider =  get_slide_collision(i).get_collider()
 		
 		if collider != null:
 			
-			if !collider.is_in_group("enemy_ship"):
+			if !collider.is_in_group("enemy_ship") && false:
 				collider.add_to_group("ship")
 				get_tree().call_group("ship","hit_with_bullet",COLLISION_DAMAGE,false,self)
 				
@@ -57,6 +59,7 @@ func _physics_process(delta):
 					collider.remove_from_group("ship")
 					
 	if !reload && CAN_SHOOT:
+		
 		$firerate.start()
 		reload = true
 		var instance = bullet.instantiate()
@@ -64,22 +67,22 @@ func _physics_process(delta):
 		instance.start_up(BULLET_DAMAGE,BULLET_SPEED,false,COLOR_SCHEME)
 		instance.rotation = rotation
 		get_parent().add_child(instance)
-		
 	var instance = trail.instantiate()
-	
 	instance.position = position
 	instance.rotation = rotation
 	instance.modulate = COLOR_SCHEME
 	instance.startup(true)
+	instance.change_visual(SHIP_VISUAL)
 	instance.z_index = -1
 	get_parent().add_child(instance)
-	
 	look_at(player.position)
 	rotate(PI/2)
 	var pdirection = global_transform.basis_xform(Vector2.UP)
-	if true:
-		velocity += (pdirection * ACCELERATION * delta)
-		velocity = velocity.limit_length(MAX_SPEED)
+	velocity += (pdirection * ACCELERATION * delta)
+	velocity = velocity.limit_length(MAX_SPEED)
 	move_and_slide()
 func firerate_timeout():
 	reload = false
+
+
+

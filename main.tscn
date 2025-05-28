@@ -1,20 +1,22 @@
-[gd_scene load_steps=21 format=3 uid="uid://cbpado6vgb8ep"]
+[gd_scene load_steps=23 format=3 uid="uid://cbpado6vgb8ep"]
 
 [ext_resource type="PackedScene" uid="uid://ceh1es7i0ljmn" path="res://ship.tscn" id="1_7bty8"]
 [ext_resource type="Texture2D" uid="uid://ce3km3df824vi" path="res://sprites/square.png" id="2_jg2jy"]
 [ext_resource type="PackedScene" uid="uid://c383poknmeu27" path="res://parallax_background.tscn" id="3_ogkwt"]
 [ext_resource type="Script" path="res://scripts/workshop/CanvasLayer.gd" id="4_pgm8f"]
+[ext_resource type="Script" path="res://scripts/ui+background/ship_workshop_container.gd" id="5_jn1ky"]
 [ext_resource type="PackedScene" uid="uid://b8fjvrf7602er" path="res://ship_workshop_panel.tscn" id="5_nidiu"]
-[ext_resource type="Script" path="res://ship_workshop_container.gd" id="5_nypf8"]
 [ext_resource type="Resource" uid="uid://bdu4qedohbiff" path="res://resources/ships/ship_default.tres" id="6_05iny"]
 [ext_resource type="Resource" uid="uid://7md4o0muo7ps" path="res://resources/upgrades/upgrade_thrusters.tres" id="6_bl6gp"]
 [ext_resource type="PackedScene" uid="uid://b8jf4xd8y4qgi" path="res://upgrade_workshop_panel.tscn" id="6_u0057"]
 [ext_resource type="Resource" uid="uid://d0hsbs6lsw5je" path="res://resources/ships/ship_pacer.tres" id="7_3cfcw"]
 [ext_resource type="Resource" uid="uid://cfy8ijhnq8ial" path="res://resources/upgrades/upgrade_minigun.tres" id="7_a5gnd"]
 [ext_resource type="Script" path="res://scripts/ui+background/Credit.gd" id="8_uucp0"]
+[ext_resource type="PackedScene" uid="uid://do3k110dd1vl4" path="res://DEV_enemy_panel.tscn" id="13_n3q0b"]
 [ext_resource type="Script" path="res://scripts/enemy/enemy_spawning.gd" id="13_ycl06"]
-[ext_resource type="PackedScene" uid="uid://bfqstblvfofgf" path="res://enemy_ship.tscn" id="14_lkom5"]
 [ext_resource type="Resource" uid="uid://dw14vjw11xfu2" path="res://resources/enemy_ships/crasher_ship.tres" id="15_de64x"]
+[ext_resource type="Resource" uid="uid://btbcd3rgrvt1a" path="res://resources/enemy_ships/speedster.tres" id="15_fyo45"]
+[ext_resource type="Resource" uid="uid://bf0k2f5tr0faa" path="res://resources/enemy_ships/bad_ship.tres" id="16_1uhi2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5brw"]
 size = Vector2(316, 317)
@@ -195,7 +197,7 @@ offset_bottom = 1080.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/ScrollContainer2"]
 layout_mode = 2
-script = ExtResource("5_nypf8")
+script = ExtResource("5_jn1ky")
 
 [node name="default" parent="CanvasLayer/Panel/ScrollContainer2/HBoxContainer" instance=ExtResource("5_nidiu")]
 layout_mode = 2
@@ -241,9 +243,15 @@ vertical_alignment = 1
 uppercase = true
 script = ExtResource("8_uucp0")
 
-[node name="enemy_spawning" type="Node" parent="."]
-script = ExtResource("13_ycl06")
+[node name="enemy_panel" parent="CanvasLayer" node_paths=PackedStringArray("enemy_spawner") instance=ExtResource("13_n3q0b")]
+offset_left = 1704.0
+offset_top = 328.0
+offset_right = 1918.0
+offset_bottom = 856.0
+enemy_ships = Array[Resource("res://resources/enemy_ship_type.gd")]([ExtResource("15_de64x"), ExtResource("15_fyo45"), ExtResource("16_1uhi2")])
+enemy_spawner = NodePath("../../enemy_spawning")
 
-[node name="enemy_ship" parent="." instance=ExtResource("14_lkom5")]
-position = Vector2(-2985, 3023)
-ship_type = ExtResource("15_de64x")
+[node name="enemy_spawning" type="Node" parent="." node_paths=PackedStringArray("player", "credit_node")]
+script = ExtResource("13_ycl06")
+player = NodePath("../main_ship")
+credit_node = NodePath("../CanvasLayer/Credit")

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="enemy_ship_type" load_steps=3 format=3 uid="uid://bf0k2f5tr0faa"]
+
+[ext_resource type="Script" path="res://resources/enemy_ship_type.gd" id="1_duhxv"]
+[ext_resource type="Texture2D" uid="uid://gscdrnm1mp61" path="res://sprites/icon.svg" id="2_b410g"]
+
+[resource]
+script = ExtResource("1_duhxv")
+name = "bad"
+description = "just so bad"
+ship_visual = ExtResource("2_b410g")
+COLLISION_DAMAGE = 0.0
+CAN_SHOOT = true
+FIRERATE = 0.05
+BULLET_DAMAGE = 0.0
+BULLET_SPEED = 100.0
+MAX_HEALTH = 1.0
+MAX_SPEED = 1000.0
+ACCELERATION = 24.0
+COLOR_SCHEME = Color(0.699, 1, 0.14, 1)
+CREDIT_MIN = -12.0
+CREDIT_MAX = -3.0

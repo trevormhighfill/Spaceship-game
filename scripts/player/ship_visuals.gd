@@ -6,8 +6,12 @@ var is_trail = false
 func _ready():
 	pass # Replace with function body.
 	
-func startup(trail):
+func startup(trail : bool):
 	is_trail = trail
+	
+
+func change_visual(texture : Texture2D):
+	$Ship.texture = texture
 
 func _physics_process(delta):
 	if is_trail:

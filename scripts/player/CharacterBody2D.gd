@@ -26,10 +26,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var upgrades_active : Array[upgrade]
 #___________________________
 #___________________________
-func hit_with_bullet(damage,team,bullet):
+func hit_with_bullet(damage,team,hit_bullet):
 	remove_from_group("ship")
 	if team == false:
-		bullet.queue_free()
+		hit_bullet.queue_free()
 		health -= damage
 		if health <= 0:
 			get_tree().change_scene_to_file("res://main.tscn")
