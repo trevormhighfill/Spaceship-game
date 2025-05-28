@@ -51,7 +51,7 @@ func _physics_process(delta):
 		
 		if collider != null:
 			
-			if !collider.is_in_group("enemy_ship") && false:
+			if !collider.is_in_group("enemy_ship"):
 				collider.add_to_group("ship")
 				get_tree().call_group("ship","hit_with_bullet",COLLISION_DAMAGE,false,self)
 				
