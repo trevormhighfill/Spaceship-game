@@ -3,7 +3,7 @@ extends Label
 @export var credit : int
 
 func _ready():
-	set_credit(1000)
+	set_credit(100000)
 
 func set_credit(amount: int):
 	credit = amount

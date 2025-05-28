@@ -2,21 +2,17 @@ extends Area2D
 signal hit_with_bullet(damage:int,team:bool,node:Node2D)
 var SPEED = 30
 var DAMAGE : float = 10
-var COLOR : Color
 
 var player_team : bool
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-func start_up(set_damage,bullet_speed,team):
+func start_up(set_damage,bullet_speed,team,color):
 	player_team = team
 	DAMAGE = set_damage
 	SPEED = bullet_speed
-	if !player_team:
-		$Sprite2D.modulate = Color(1,.4,.4,1)
-	else:
-		$Sprite2D.modulate = COLOR
+	$Sprite2D.modulate = color
 		
 
 func _physics_process(delta):

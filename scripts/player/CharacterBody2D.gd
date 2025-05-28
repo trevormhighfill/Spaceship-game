@@ -40,9 +40,8 @@ func _input(event):
 		$firerate.start()
 		reload = true
 		var instance = bullet.instantiate()
-		instance.COLOR = COLOR_SCHEME
 		instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
-		instance.start_up(DAMAGE,BULLET_SPEED,true)
+		instance.start_up(DAMAGE,BULLET_SPEED,true,COLOR_SCHEME)
 		instance.rotation = rotation
 		get_parent().add_child(instance)
 func change_ship(new_ship : ship):
@@ -102,7 +101,7 @@ func _process(delta):
 		reload = true
 		var instance = bullet.instantiate()
 		instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
-		instance.start_up(DAMAGE,BULLET_SPEED,true)
+		instance.start_up(DAMAGE,BULLET_SPEED,true,COLOR_SCHEME)
 		instance.rotation = rotation
 		get_parent().add_child(instance)
 func create_trail():
