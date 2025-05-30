@@ -13,6 +13,7 @@ class_name enemy_ship_type
 @export var SHOTS_PER_RELOAD : int
 @export var BULLET_DAMAGE : float 
 @export var BULLET_SPEED : float 
+@export var BULLET_SPREAD : float
 
 @export var MAX_HEALTH : float
   

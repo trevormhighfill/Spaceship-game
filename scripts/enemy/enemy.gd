@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var SHOTS_PER_RELOAD = ship_type.SHOTS_PER_RELOAD
 @onready var BULLET_DAMAGE = ship_type.BULLET_DAMAGE
 @onready var BULLET_SPEED = ship_type.BULLET_SPEED
+@onready var BULLET_SPREAD = ship_type.BULLET_SPREAD
 
 @onready var MAX_HEALTH = ship_type.MAX_HEALTH
 @onready var MAX_SPEED = ship_type.MAX_SPEED
@@ -46,10 +47,6 @@ func _ready():
 		$firerate.wait_time = FIRERATE
 		$reload.wait_time = RELOAD_TIME
 		print(RELOAD_TIME)
-
-
-
-
 func _physics_process(delta):
 	for i in get_slide_collision_count():
 		#var collision = get_slide_collision(i)
@@ -69,11 +66,7 @@ func _physics_process(delta):
 		current_shots -= 1
 		print(current_shots)
 		shootbullet = false
-		var instance = bullet.instantiate()
-		instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
-		instance.start_up(BULLET_DAMAGE,BULLET_SPEED,false,COLOR_SCHEME)
-		instance.rotation = rotation
-		get_parent().add_child(instance)
+		create_bullet()
 	else:
 		if current_shots <= 0 && reload_ready && CAN_SHOOT:
 			$reload.start()
@@ -102,3 +95,12 @@ func reload_timeout():
 	current_shots = SHOTS_PER_RELOAD
 	reload_ready = true
 	
+func create_bullet():
+	$firerate.start()
+	shootbullet = false
+	var instance = bullet.instantiate()
+	instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
+	instance.start_up(BULLET_DAMAGE,BULLET_SPEED,false,COLOR_SCHEME)
+	
+	instance.rotation = rotation + randf_range(-BULLET_SPREAD,BULLET_SPREAD)
+	get_parent().add_child(instance)

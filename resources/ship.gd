@@ -9,6 +9,7 @@ class_name ship
 @export var FIRERATE : float 
 @export var DAMAGE : float 
 @export var BULLET_SPEED : float 
+@export var BULLET_SPREAD : float
 @export var hold_to_shoot: bool  
 
 @export var MAX_HEALTH : float

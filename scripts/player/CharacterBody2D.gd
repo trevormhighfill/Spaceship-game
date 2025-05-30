@@ -5,6 +5,7 @@ var FIRERATE = 0.3
 var DAMAGE = 50
 var BULLET_SPEED = 60
 var hold_to_shoot = false
+var BULLET_SPREAD : float = 0
 #___________________________
 var MAX_HEALTH = 100
 #___________________________
@@ -37,13 +38,7 @@ func _ready():
 	$firerate.wait_time = FIRERATE
 func _input(event):
 	if event.is_action_pressed("fire") && !reload && hold_to_shoot == false:
-		$firerate.start()
-		reload = true
-		var instance = bullet.instantiate()
-		instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
-		instance.start_up(DAMAGE,BULLET_SPEED,true,COLOR_SCHEME)
-		instance.rotation = rotation
-		get_parent().add_child(instance)
+		create_bullet()
 func change_ship(new_ship : ship):
 	hold_to_shoot = new_ship.hold_to_shoot
 	FIRERATE = new_ship.FIRERATE
@@ -57,6 +52,7 @@ func change_ship(new_ship : ship):
 	COLOR_SCHEME = new_ship.COLOR_SCHEME
 	SHIP_VISUAL.texture = new_ship.ship_visual
 	$firerate.wait_time = FIRERATE
+	BULLET_SPREAD = new_ship.BULLET_SPREAD
 	reload_upgrades()
 func reload_upgrades():
 	for i in upgrades_active.size():
@@ -97,13 +93,7 @@ func check_upgrade(checked_upgrade):
 		return false
 func _process(delta):
 	if Input.is_action_pressed("fire") && !reload && hold_to_shoot == true:
-		$firerate.start()
-		reload = true
-		var instance = bullet.instantiate()
-		instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
-		instance.start_up(DAMAGE,BULLET_SPEED,true,COLOR_SCHEME)
-		instance.rotation = rotation
-		get_parent().add_child(instance)
+		create_bullet()
 func create_trail():
 	var instance = trail.instantiate()
 	instance.get_node("Ship").texture = SHIP_VISUAL.texture
@@ -139,3 +129,14 @@ func _physics_process(delta):
 	move_and_slide()
 func firerate_timeout():
 	reload = false
+
+func create_bullet():
+	$firerate.start()
+	reload = true
+	var instance = bullet.instantiate()
+	instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
+	instance.start_up(DAMAGE,BULLET_SPEED,true,COLOR_SCHEME)
+	
+	instance.rotation = rotation + randf_range(-BULLET_SPREAD,BULLET_SPREAD)
+	print(rotation)
+	get_parent().add_child(instance)
