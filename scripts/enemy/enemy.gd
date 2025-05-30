@@ -96,11 +96,6 @@ func _physics_process(delta):
 	move_and_slide()
 func firerate_timeout():
 	shootbullet = true
-
-
-
-
-
 func reload_timeout():
 	$reload.stop()
 	print("reload end")
