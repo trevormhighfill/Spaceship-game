@@ -16,4 +16,7 @@ polygon = PackedVector2Array(-2, -66, 63, 64, -67, 65)
 
 [node name="Ship_visuals" parent="." instance=ExtResource("2_ut8c1")]
 
+[node name="reload" type="Timer" parent="."]
+
 [connection signal="timeout" from="firerate" to="." method="firerate_timeout" flags=18]
+[connection signal="timeout" from="reload" to="." method="reload_timeout"]

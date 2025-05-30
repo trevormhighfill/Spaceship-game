@@ -9,6 +9,8 @@ class_name enemy_ship_type
 
 @export var CAN_SHOOT: bool
 @export var FIRERATE : float 
+@export var RELOAD_TIME : float
+@export var SHOTS_PER_RELOAD : int
 @export var BULLET_DAMAGE : float 
 @export var BULLET_SPEED : float 
 

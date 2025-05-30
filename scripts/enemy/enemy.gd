@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var CAN_SHOOT = ship_type.CAN_SHOOT
 @onready var COLLISION_DAMAGE = ship_type.COLLISION_DAMAGE
 @onready var FIRERATE = ship_type.FIRERATE
+@onready var RELOAD_TIME = ship_type.RELOAD_TIME
+@onready var SHOTS_PER_RELOAD = ship_type.SHOTS_PER_RELOAD
 @onready var BULLET_DAMAGE = ship_type.BULLET_DAMAGE
 @onready var BULLET_SPEED = ship_type.BULLET_SPEED
 
@@ -22,7 +24,9 @@ var bullet = preload("res://bullet.tscn")
 var trail = preload("res://ship_visuals.tscn")
 @onready var health = MAX_HEALTH
 var current_speed = 0.0
-var reload : bool = false
+var shootbullet : bool = true
+@onready var current_shots = SHOTS_PER_RELOAD
+var reload_ready = true
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #var aim = get_global_transform().basis
@@ -40,6 +44,8 @@ func _ready():
 	$Ship_visuals.change_visual(SHIP_VISUAL)
 	if CAN_SHOOT:
 		$firerate.wait_time = FIRERATE
+		$reload.wait_time = RELOAD_TIME
+		print(RELOAD_TIME)
 
 
 
@@ -58,15 +64,22 @@ func _physics_process(delta):
 				if collider.is_in_group("ship"):
 					collider.remove_from_group("ship")
 					
-	if !reload && CAN_SHOOT:
-		
+	if shootbullet && CAN_SHOOT && current_shots > 0:
 		$firerate.start()
-		reload = true
+		current_shots -= 1
+		print(current_shots)
+		shootbullet = false
 		var instance = bullet.instantiate()
 		instance.position = global_transform.basis_xform(Vector2.UP)*70 + position
 		instance.start_up(BULLET_DAMAGE,BULLET_SPEED,false,COLOR_SCHEME)
 		instance.rotation = rotation
 		get_parent().add_child(instance)
+	else:
+		if current_shots <= 0 && reload_ready && CAN_SHOOT:
+			$reload.start()
+			reload_ready = false
+			print("reload start")
+	#print(current_shots > 0)
 	var instance = trail.instantiate()
 	instance.position = position
 	instance.rotation = rotation
@@ -82,7 +95,15 @@ func _physics_process(delta):
 	velocity = velocity.limit_length(MAX_SPEED)
 	move_and_slide()
 func firerate_timeout():
-	reload = false
+	shootbullet = true
 
 
 
+
+
+func reload_timeout():
+	$reload.stop()
+	print("reload end")
+	current_shots = SHOTS_PER_RELOAD
+	reload_ready = true
+	

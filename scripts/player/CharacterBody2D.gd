@@ -122,6 +122,8 @@ func _physics_process(delta):
 		
 		rotate(-rdirection * ANGULAR_SPEED)
 	else:
+		#look_at(Vector2(0,0))
+		#rotate(PI/2)
 		rotate(0)
 	var pdirection = global_transform.basis_xform(Vector2.UP)
 	if Input.is_action_pressed("foward"):

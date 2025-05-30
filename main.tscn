@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cbpado6vgb8ep"]
+[gd_scene load_steps=24 format=3 uid="uid://cbpado6vgb8ep"]
 
 [ext_resource type="PackedScene" uid="uid://ceh1es7i0ljmn" path="res://ship.tscn" id="1_7bty8"]
 [ext_resource type="Texture2D" uid="uid://ce3km3df824vi" path="res://sprites/square.png" id="2_jg2jy"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://dw14vjw11xfu2" path="res://resources/enemy_ships/crasher_ship.tres" id="15_de64x"]
 [ext_resource type="Resource" uid="uid://btbcd3rgrvt1a" path="res://resources/enemy_ships/speedster.tres" id="15_fyo45"]
 [ext_resource type="Resource" uid="uid://bf0k2f5tr0faa" path="res://resources/enemy_ships/bad_ship.tres" id="16_1uhi2"]
+[ext_resource type="Texture2D" uid="uid://gscdrnm1mp61" path="res://sprites/icon.svg" id="18_miy2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5brw"]
 size = Vector2(316, 317)
@@ -255,3 +256,6 @@ enemy_spawner = NodePath("../../enemy_spawning")
 script = ExtResource("13_ycl06")
 player = NodePath("../main_ship")
 credit_node = NodePath("../CanvasLayer/Credit")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("18_miy2v")
