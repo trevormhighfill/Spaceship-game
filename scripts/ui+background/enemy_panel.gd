@@ -7,6 +7,7 @@ var random_button :bool = true
 var target_enemy : enemy_ship_type
 func _ready():
 	randombutton_toggled(true)
+	print(enemy_ships.size())
 	for i in enemy_ships.size():
 		var current_ship = enemy_ships[i]
 		var new_visual = current_ship.ship_visual

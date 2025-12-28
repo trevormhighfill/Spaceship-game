@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://do3k110dd1vl4"]
 
 [ext_resource type="Script" path="res://scripts/ui+background/enemy_panel.gd" id="1_sxjs3"]
-[ext_resource type="Resource" uid="uid://dw14vjw11xfu2" path="res://resources/enemy_ships/crasher_ship.tres" id="2_6eh0g"]
-[ext_resource type="Resource" uid="uid://btbcd3rgrvt1a" path="res://resources/enemy_ships/speedster.tres" id="3_cxgem"]
+[ext_resource type="Resource" uid="uid://bf0k2f5tr0faa" path="res://resources/enemy_ships/bad_ship.tres" id="2_65asd"]
+[ext_resource type="Resource" uid="uid://btbcd3rgrvt1a" path="res://resources/enemy_ships/speedster.tres" id="3_a1v88"]
 [ext_resource type="Script" path="res://distance.gd" id="4_3sglr"]
 [ext_resource type="Script" path="res://scripts/ui+background/max_distance.gd" id="4_eh53u"]
 [ext_resource type="Script" path="res://scripts/ui+background/min_distance.gd" id="5_38hwq"]
@@ -14,7 +14,7 @@ font_size = 14
 offset_right = 214.0
 offset_bottom = 544.0
 script = ExtResource("1_sxjs3")
-enemy_ships = Array[Resource("res://resources/enemy_ship_type.gd")]([ExtResource("2_6eh0g"), ExtResource("3_cxgem")])
+enemy_ships = Array[Resource("res://resources/enemy_ship_type.gd")]([ExtResource("2_65asd"), ExtResource("3_a1v88")])
 
 [node name="spawnenemy" type="Label" parent="."]
 layout_mode = 0
