@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1trrgfr3ppfh"]
+
+[ext_resource type="AudioStream" uid="uid://bx8m64ea5hr52" path="res://F16 - The Grey Room _ Golden Palms.mp3" id="1_ad38i"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_ad38i")
+autoplay = true
+max_distance = 100000.0

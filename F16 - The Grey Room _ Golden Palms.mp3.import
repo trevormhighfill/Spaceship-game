@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bx8m64ea5hr52"
+path="res://.godot/imported/F16 - The Grey Room _ Golden Palms.mp3-5b5c60730e34bbe36c4bc1ce2f43b673.mp3str"
+
+[deps]
+
+source_file="res://F16 - The Grey Room _ Golden Palms.mp3"
+dest_files=["res://.godot/imported/F16 - The Grey Room _ Golden Palms.mp3-5b5c60730e34bbe36c4bc1ce2f43b673.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
